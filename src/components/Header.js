@@ -21,6 +21,9 @@ export default class Header extends React.Component {
           <div className="Navbar__Link">
             <a onClick={this.toggleHidden} href="#intro-text" className="Navbar__item">Intro</a>
           </div>
+          <div>
+            <a onClick={this.toggleHidden} href="#sauna" className="Navbar__item">Sauna</a>
+          </div>
           <div className="Navbar__Link">
             <a onClick={this.toggleHidden} href="#contact-form" className="Navbar__item">Contact Form</a>
           </div>
