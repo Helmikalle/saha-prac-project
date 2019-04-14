@@ -6,25 +6,27 @@ import '../../styles/Slider.css';
 
   export default class Sauna extends Component {
     state = {
-      pictures: [],
-      currentIndex: 0,
-      translateValue: 0
+        paragraph:"",
+        imageList: [],
+        currentIndex: 0,
+        translateValue: 0
     };
   
     componentDidMount() {
       axios
-        .get("http://localhost:8081/image")
+        .get("http://localhost:8081/property/sauna1")
         .then(response => {
-          const newPictures = response.data.map(c => {
+          const newParagraph = response.data.paragraph;
+          const newPictures = response.data.imageList.map(c => {
             return {
               id: c.id,
               name: c.name,
-              sahaPhotoURL: c.sahaPhotoURL,
-              type: c.type 
+              sahaPhotoURL: c.sahaPhotoURL
             };
           });
           const newState = Object.assign({}, this.state, {
-            pictures: newPictures
+            paragraph: newParagraph,
+            imageList: newPictures
           });
           this.setState(newState);
         }).catch(error => console.log('ERROR: ', error))
@@ -44,7 +46,7 @@ import '../../styles/Slider.css';
       // Exiting the method early if we are at the end of the images array.
       // We also want to reset currentIndex and translateValue, so we return
       // to the first image in the array.
-      if(this.state.currentIndex === this.state.pictures.length - 1) {
+      if(this.state.currentIndex === this.state.imageList.length - 1) {
         return this.setState({
           currentIndex: 0,
           translateValue: 0
@@ -63,28 +65,35 @@ import '../../styles/Slider.css';
     }
 
     render() {
+      const { paragraph, imageList } = this.state;
       return(
-        <div className="slider">
+        <div>
+          <div className="slider">
 
-        <div className="slider-wrapper"
-          style={{
-            transform: `translateX(${this.state.translateValue}px)`,
-            transition: 'transform ease-out 0.45s'
-          }}>
-            {
-              this.state.pictures.map(pic => 
-              <SaunaPicture key={pic.id} name={pic.sahaPhotoURL}/>
-              )
-            }
+          <div className="slider-wrapper"
+            style={{
+              transform: `translateX(${this.state.translateValue}px)`,
+              transition: 'transform ease-out 0.45s'
+            }}>
+              {
+                imageList.map(pic => 
+                <SaunaPicture key={pic.id} name={pic.sahaPhotoURL}/>
+                )
+              }
+          </div>
+
+          <LeftArrow
+          goToPrevSlide={this.goToPrevSlide}
+          />
+
+          <RightArrow
+          goToNextSlide={this.goToNextSlide}
+          />
+
+          
+          
         </div>
-
-        <LeftArrow
-         goToPrevSlide={this.goToPrevSlide}
-        />
-
-        <RightArrow
-         goToNextSlide={this.goToNextSlide}
-        />
+        <p>{paragraph}</p>
       </div>
       )
     }
