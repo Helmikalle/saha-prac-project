@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import IntroContent from './IntroContent';
 
@@ -26,11 +26,13 @@ export default class Intoduction extends Component {
   }
 
   render() {
-    return(
+    return (
       <div>
+        <h1>HELLO WORLD</h1>
+        <p>WELCOME WELCOME</p>
         <p>
           {this.state.introContent.map(content =>
-            <IntroContent key={content.id} paragraph={content.paragraph}/>)}
+            <IntroContent key={content.id} paragraph={content.paragraph} />)}
         </p>
       </div>
     )

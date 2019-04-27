@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/Slider.css';
 
-const SaunaPicture = (props) => {
+const PropertyPicture = (props) => {
 
   const styles = {
     backgroundImage: `url(${props.name})`,
@@ -15,4 +15,4 @@ const SaunaPicture = (props) => {
   )
 }
 
-export default SaunaPicture;
+export default PropertyPicture;

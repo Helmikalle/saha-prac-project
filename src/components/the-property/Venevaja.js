@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import SaunaPicture from './PropertyPicture';
-import '../../styles/Slider.css';
-import '../../styles/Property.css'
+import VenevajaPicture from './PropertyPicture';
+import '../../styles/Property.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 
-
-export default class Sauna extends Component {
+export default class Venevaja extends Component {
   state = {
     paragraph: "",
     imageList: [],
@@ -17,7 +15,7 @@ export default class Sauna extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:8081/property/sauna1")
+      .get("http://localhost:8081/property/venevaja1")
       .then(response => {
         const newParagraph = response.data.paragraph;
         const newPictures = response.data.imageList.map(c => {
@@ -71,7 +69,7 @@ export default class Sauna extends Component {
     const { paragraph, imageList } = this.state;
     return (
       <div>
-        <div className='image'>
+        <div className="image">
           <div className="slider">
 
             <div className="slider-wrapper"
@@ -81,7 +79,7 @@ export default class Sauna extends Component {
               }}>
               {
                 imageList.map(pic =>
-                  <SaunaPicture key={pic.id} name={pic.sahaPhotoURL} />
+                  <VenevajaPicture key={pic.id} name={pic.sahaPhotoURL} />
                 )
               }
             </div>
@@ -95,8 +93,8 @@ export default class Sauna extends Component {
             />
           </div>
         </div>
-        <div className='paragraph'>
-          <h2 className='header'>Sauna</h2>
+        <div className="paragraph">
+          <h2 className='header'>Venevaja</h2>
           <p>{paragraph}</p>
         </div>
       </div>
@@ -120,6 +118,3 @@ const RightArrow = (props) => {
     </div>
   );
 }
-
-
-
